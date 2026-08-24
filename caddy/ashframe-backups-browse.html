@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <title>{{.Name}} — Ashframe Backups</title>
+    <link rel="stylesheet" href="/style.css?v=20260824-3">
+  </head>
+  <body class="archive-page">
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Ashframe backups home">ASHFRAME</a>
+      <span>PUBLIC ARCHIVES</span>
+    </header>
+
+    <main class="archive-main">
+      <p class="eyebrow">// ASHFRAME BACKUPS</p>
+      <div class="archive-title-row">
+        <div>
+          <h1>{{.Name}}<em>.</em></h1>
+          <p class="summary">Publicly shared archives for this project.</p>
+        </div>
+        {{if .CanGoUp}}<a class="back-link" href="../">← BACK TO ARCHIVES</a>{{end}}
+      </div>
+
+      <section class="directory-list" aria-label="Files in {{.Name}}">
+        <div class="directory-heading">
+          <span>NAME</span><span>TYPE</span><span>SIZE</span><span>UPLOADED</span>
+        </div>
+        {{if .Items}}
+          {{range .Items}}
+          <a class="directory-item" href="{{.URL}}">
+            <span class="item-name"><b>{{if .IsDir}}DIR{{else}}FILE{{end}}</b>{{.Name}}</span>
+            <span>{{if .IsDir}}FOLDER{{else}}ARCHIVE{{end}}</span>
+            <span>{{if .IsDir}}—{{else}}{{.HumanSize}}{{end}}</span>
+            <span>{{.ModTime.Format "2006-01-02"}}</span>
+          </a>
+          {{end}}
+        {{else}}
+          <p class="empty-directory">No files have been published here yet.</p>
+        {{end}}
+      </section>
+    </main>
+
+    <footer>
+      <span>ASHFRAME © 2026</span>
+      <span>PUBLIC PROJECT ARCHIVES</span>
+      <a href="https://github.com/ashframe-org">GITHUB ↗</a>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+# Replace the host name and filesystem paths for your own deployment.
+# Keep private backups outside the public root.
+backups.example.com {
+    root * /srv/backups/public
+    encode zstd gzip
+
+    file_server {
+        browse /etc/caddy/templates/ashframe-backups-browse.html
+    }
+}
